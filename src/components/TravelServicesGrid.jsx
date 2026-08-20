@@ -1,0 +1,158 @@
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Plane, Car, Ticket, ShieldAlert, Compass, Anchor, Hotel, ShieldCheck, ArrowRight } from 'lucide-react';
+import Tilt3DCard from './Tilt3DCard';
+import { DoongaBoatIcon, CarTransferIcon, MachhapuchhrePeakIcon, ParaglideSoarIcon } from './CustomSymbols';
+
+export default function TravelServicesGrid({ onOpenBooking }) {
+  const SERVICES = [
+    {
+      id: 'car-fleet',
+      icon: CarTransferIcon,
+      title: 'Car & 4x4 Fleet Rentals',
+      desc: 'Chauffeured luxury AC Sedans, 4x4 Land Rover Jeeps, Hiace Vans & Tourist Coasters with licensed local drivers.',
+      badge: 'Vehicle Fleet',
+      tag: 'City & Overland',
+      color: 'text-[#1E5399]',
+      bg: 'bg-blue-50/80 border-blue-200'
+    },
+    {
+      id: 'flight-tickets',
+      icon: Plane,
+      title: 'Domestic & Scenic Flights',
+      desc: 'Instant flight bookings for Pokhara–Kathmandu routes and morning Himalayan Everest sightseeing flights.',
+      badge: 'Air Ticketing',
+      tag: 'E-Ticket Guaranteed',
+      color: 'text-[#C5283D]',
+      bg: 'bg-red-50/80 border-red-200'
+    },
+    {
+      id: 'adventure-sports',
+      icon: ParaglideSoarIcon,
+      title: 'Adventure Sports Booking',
+      desc: 'Authorized booking for Sarangkot Paragliding, Ultralight flights, Trishuli Rafting, and Zip-Flyer expeditions.',
+      badge: 'Thrill & Sky',
+      tag: 'APPI Flight Masters',
+      color: 'text-amber-600',
+      bg: 'bg-amber-50/80 border-amber-200'
+    },
+    {
+      id: 'trekking-permits',
+      icon: MachhapuchhrePeakIcon,
+      title: 'Trek Permits & Guides',
+      desc: 'Official ACAP & TIMS permit processing, licensed mountain guides, and experienced high-altitude porters.',
+      badge: 'Himalayan Treks',
+      tag: 'Govt Registered',
+      color: 'text-emerald-600',
+      bg: 'bg-emerald-50/80 border-emerald-200'
+    },
+    {
+      id: 'lake-charters',
+      icon: DoongaBoatIcon,
+      title: 'Phewa Lake Boat Charters',
+      desc: 'Private wooden doonga boats, sunrise paddleboards, and VIP boat transfers to Tal Barahi Island Temple.',
+      badge: 'Doonga Fleet',
+      tag: 'Safety Vests Included',
+      color: 'text-sky-600',
+      bg: 'bg-sky-50/80 border-sky-200'
+    },
+    {
+      id: 'hotel-resorts',
+      icon: Hotel,
+      title: 'Hotel & Resort Reservations',
+      desc: 'Exclusive negotiated rates at handpicked Pokhara lakeside eco-lodges, boutique resorts, and 5-star hotels.',
+      badge: 'Accommodation',
+      tag: 'Best Price Match',
+      color: 'text-indigo-600',
+      bg: 'bg-indigo-50/80 border-indigo-200'
+    }
+  ];
+
+  return (
+    <section id="services" className="py-24 bg-white relative border-t border-slate-200">
+      <div className="max-w-7xl mx-auto px-6">
+        {/* Header */}
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-blue-50 border border-blue-200 text-xs tracking-widest uppercase text-[#1E5399] font-bold mb-4 shadow-sm">
+            <ShieldCheck className="w-4 h-4 text-[#C5283D]" />
+            <span>Full-Service Travel Agency</span>
+          </div>
+          <h2 className="font-serif-custom text-3xl sm:text-5xl font-bold text-slate-900 tracking-tight">
+            Our Full Range of Travel Services
+          </h2>
+          <p className="mt-4 text-slate-600 font-sans-custom font-normal text-base sm:text-lg">
+            From luxury 4x4 car rentals and domestic flight tickets to licensed trek guides and private lake charters — we manage every detail of your Nepal journey.
+          </p>
+        </div>
+
+        {/* Services Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {SERVICES.map((srv) => {
+            const IconComp = srv.icon;
+            return (
+              <Tilt3DCard key={srv.id} tiltIntensity={10}>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4 }}
+                  className="glass-card glass-card-hover rounded-3xl p-7 flex flex-col justify-between group preserve-3d h-full"
+                >
+                  <div>
+                    {/* Top Badge & Icon */}
+                    <div className="flex items-center justify-between mb-5">
+                      <div className={`w-12 h-12 rounded-2xl ${srv.bg} border flex items-center justify-center group-hover:scale-110 transition-transform shadow-3d-blue`}>
+                        <IconComp className={`w-6 h-6 ${srv.color}`} color="currentColor" />
+                      </div>
+                      <span className="text-[10px] uppercase font-bold tracking-wider px-3 py-1 rounded-full bg-white border border-slate-200 text-slate-600 shadow-sm translate-z-20">
+                        {srv.tag}
+                      </span>
+                    </div>
+
+                    <h3 className="font-serif-custom text-xl font-bold text-slate-900 mb-2 group-hover:text-[#1E5399] transition-colors translate-z-10">
+                      {srv.title}
+                    </h3>
+
+                    <p className="text-slate-600 text-sm leading-relaxed font-normal">
+                      {srv.desc}
+                    </p>
+                  </div>
+
+                  <div className="pt-5 mt-5 border-t border-slate-200/60 flex items-center justify-between">
+                    <span className="text-xs font-bold text-[#1E5399] uppercase tracking-wider">
+                      {srv.badge}
+                    </span>
+                  </div>
+                </motion.div>
+              </Tilt3DCard>
+            );
+          })}
+        </div>
+
+        {/* Agency Registration & Certification Banner */}
+        <div className="mt-16 p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-blue-50/90 via-white to-red-50/90 border border-slate-200/90 shadow-xl flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="flex items-center gap-4 text-center md:text-left">
+            <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#1E5399] to-[#C5283D] flex items-center justify-center shrink-0 text-white shadow-md">
+              <ShieldCheck className="w-6 h-6 text-amber-300" />
+            </div>
+            <div>
+              <h4 className="font-serif-custom font-bold text-lg text-slate-900">
+                Official Licensed Travel Agency • Government Registered
+              </h4>
+              <p className="text-xs text-slate-600 font-sans-custom font-medium mt-0.5">
+                Nepal Tourism Board (NTB) Reg No. 148920/078 • TAAN & NATTA Member • 100% Guaranteed Liability Insurance
+              </p>
+            </div>
+          </div>
+
+          <a
+            href="tel:+9779856028626"
+            className="shrink-0 px-6 py-3 rounded-full bg-gradient-to-r from-[#1E5399] via-[#2563EB] to-[#C5283D] hover:shadow-xl text-xs font-bold uppercase tracking-wider text-white shadow-md transition-all"
+          >
+            Contact Travel Desk
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}

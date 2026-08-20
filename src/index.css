@@ -1,0 +1,137 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --logo-blue: #1E5399;
+    --logo-blue-dark: #143A6D;
+    --logo-red: #C5283D;
+    --logo-red-hover: #A81E30;
+    --logo-amber: #F59E0B;
+    --dawn-mist: #F8FAFC;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: #F8FAFC;
+    color: #0F172A;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    overflow-x: hidden;
+  }
+}
+
+/* 3D Touch-Up & Perspective Utilities */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.translate-z-10 {
+  transform: translateZ(10px);
+}
+
+.translate-z-20 {
+  transform: translateZ(20px);
+}
+
+.translate-z-30 {
+  transform: translateZ(30px);
+}
+
+.shadow-3d-lg {
+  box-shadow: 0 30px 60px -15px rgba(15, 23, 42, 0.12), 0 15px 30px -10px rgba(30, 83, 153, 0.18);
+}
+
+.shadow-3d-blue {
+  box-shadow: 0 20px 45px -10px rgba(30, 83, 153, 0.28), 0 8px 20px -5px rgba(37, 99, 235, 0.2);
+}
+
+.shadow-3d-red {
+  box-shadow: 0 20px 45px -10px rgba(197, 40, 61, 0.28), 0 8px 20px -5px rgba(197, 40, 61, 0.2);
+}
+
+/* Glassmorphism Design System Utilities */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.08), 0 0 20px rgba(30, 83, 153, 0.04);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  box-shadow: 0 12px 35px -10px rgba(15, 23, 42, 0.06);
+}
+
+.glass-card-hover {
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+.glass-card-hover:hover {
+  background: rgba(255, 255, 255, 0.98);
+  border-color: rgba(30, 83, 153, 0.35);
+  box-shadow: 0 30px 60px -12px rgba(30, 83, 153, 0.16), 0 0 25px rgba(197, 40, 61, 0.08);
+  transform: translateY(-6px) scale(1.015);
+}
+
+.glass-badge {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+}
+
+.glass-dark {
+  background: rgba(15, 23, 42, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* Custom Water Ripple Keyframes */
+@keyframes ripple-pulse {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.4;
+  }
+  100% {
+    transform: scale(0.95);
+    opacity: 0.8;
+  }
+}
+
+.animate-ripple-pulse {
+  animation: ripple-pulse 3s infinite ease-in-out;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F1F5F9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #1E5399;
+}
