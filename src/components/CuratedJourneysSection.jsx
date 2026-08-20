@@ -86,11 +86,7 @@ export default function CuratedJourneysSection({ onSelectPackage, onOpenBooking,
                   </span>
                 </div>
 
-                {/* Price Tag Top Right */}
-                <div className="absolute top-4 right-4 bg-white/95 backdrop-blur-md border border-slate-200 px-3.5 py-1.5 rounded-2xl text-right shadow-md">
-                  <span className="text-[10px] text-slate-500 font-sans-custom block uppercase tracking-wider">From</span>
-                  <span className="text-lg font-bold text-[#1E5399] font-serif-custom">{pkg.price}</span>
-                </div>
+
 
                 {/* Title overlay */}
                 <div className="absolute bottom-4 left-4 right-4 text-white">
@@ -216,9 +212,9 @@ export default function CuratedJourneysSection({ onSelectPackage, onOpenBooking,
 
                 <div className="flex items-center justify-between pt-4 border-t border-slate-100">
                   <div>
-                    <span className="text-xs text-slate-500 block uppercase tracking-wider">Total Package</span>
-                    <span className="text-2xl font-bold text-[#1E5399] font-serif-custom">
-                      {activePackageModal.price} / person
+                    <span className="text-xs text-slate-500 block uppercase tracking-wider">Package Rates</span>
+                    <span className="text-xl font-bold text-[#1E5399] font-serif-custom">
+                      Custom Quote / On Request
                     </span>
                   </div>
 

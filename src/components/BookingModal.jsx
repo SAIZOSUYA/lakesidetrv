@@ -102,7 +102,7 @@ export default function BookingModal({ isOpen, onClose, preselectedPackage, cust
                   >
                     {TOUR_PACKAGES.map(pkg => (
                       <option key={pkg.id} value={pkg.id} className="bg-white text-slate-900">
-                        {pkg.title} ({pkg.duration}) — {pkg.price}
+                        {pkg.title} ({pkg.duration})
                       </option>
                     ))}
                   </select>
@@ -114,7 +114,7 @@ export default function BookingModal({ isOpen, onClose, preselectedPackage, cust
                   </span>
                   <span>{customData.items.map(i => i.name).join(' • ')}</span>
                   <span className="block mt-2 font-mono text-[#C5283D] font-bold">
-                    Est. Total: ${customData.cost} / guest
+                    Est. Total: On Request
                   </span>
                 </div>
               )}
@@ -123,49 +123,38 @@ export default function BookingModal({ isOpen, onClose, preselectedPackage, cust
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs uppercase tracking-wider text-[#1E5399] font-bold mb-2">
-                    Preferred Start Date:
+                    Preferred Date:
                   </label>
-                  <div className="relative">
-                    <input
-                      type="date"
-                      value={travelDate}
-                      onChange={(e) => setTravelDate(e.target.value)}
-                      className="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 text-sm text-slate-900 focus:outline-none focus:border-[#1E5399] font-medium"
-                    />
-                  </div>
+                  <input
+                    type="date"
+                    value={formData.date}
+                    onChange={(e) => setFormData({ ...formData, date: e.target.value })}
+                    className="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 text-sm text-slate-900 focus:outline-none focus:border-[#1E5399]"
+                  />
                 </div>
-
                 <div>
                   <label className="block text-xs uppercase tracking-wider text-[#1E5399] font-bold mb-2">
-                    Number of Guests:
+                    Travelers:
                   </label>
-                  <div className="flex items-center gap-3 bg-slate-50 border border-slate-300 rounded-xl px-4 py-2.5">
-                    <Users className="w-4 h-4 text-slate-500" />
-                    <button
-                      type="button"
-                      onClick={() => setTravelers(Math.max(1, travelers - 1))}
-                      className="w-7 h-7 rounded-lg bg-slate-200 text-slate-900 font-bold hover:bg-slate-300 transition-colors"
-                    >
-                      -
-                    </button>
-                    <span className="flex-1 text-center font-bold text-sm text-slate-900">{travelers} Guests</span>
-                    <button
-                      type="button"
-                      onClick={() => setTravelers(travelers + 1)}
-                      className="w-7 h-7 rounded-lg bg-slate-200 text-slate-900 font-bold hover:bg-slate-300 transition-colors"
-                    >
-                      +
-                    </button>
-                  </div>
+                  <select
+                    value={formData.guests}
+                    onChange={(e) => setFormData({ ...formData, guests: e.target.value })}
+                    className="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 text-sm text-slate-900 focus:outline-none focus:border-[#1E5399]"
+                  >
+                    <option value="1 Guest">1 Guest (Solo)</option>
+                    <option value="2 Guests">2 Guests (Couple / Pair)</option>
+                    <option value="3-5 Guests">3-5 Guests (Family)</option>
+                    <option value="6+ Guests">6+ Guests (Group)</option>
+                  </select>
                 </div>
               </div>
 
-              {/* Special Enhancements Addons */}
+              {/* Add-ons Checklist */}
               <div>
-                <label className="block text-xs uppercase tracking-wider text-[#1E5399] font-bold mb-3">
-                  Tailored Enhancements (Optional):
+                <label className="block text-xs uppercase tracking-wider text-[#1E5399] font-bold mb-2">
+                  Optional Voyage Add-ons:
                 </label>
-                <div className="space-y-2.5">
+                <div className="space-y-2">
                   <label className="flex items-center justify-between bg-slate-50 p-3 rounded-xl border border-slate-200 cursor-pointer text-xs font-medium text-slate-800">
                     <div className="flex items-center gap-2.5">
                       <input
@@ -176,7 +165,7 @@ export default function BookingModal({ isOpen, onClose, preselectedPackage, cust
                       />
                       <span>Private 5:30 AM Sunrise Wooden Boat</span>
                     </div>
-                    <span className="text-[#C5283D] font-bold font-mono">+$25</span>
+                    <span className="text-[#1E5399] font-bold font-mono">Option</span>
                   </label>
 
                   <label className="flex items-center justify-between bg-slate-50 p-3 rounded-xl border border-slate-200 cursor-pointer text-xs font-medium text-slate-800">
@@ -189,7 +178,7 @@ export default function BookingModal({ isOpen, onClose, preselectedPackage, cust
                       />
                       <span>Paragliding HD GoPro Flight Video Pack</span>
                     </div>
-                    <span className="text-[#C5283D] font-bold font-mono">+$35</span>
+                    <span className="text-[#1E5399] font-bold font-mono">Option</span>
                   </label>
                 </div>
               </div>

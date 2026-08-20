@@ -152,9 +152,9 @@ export default function DoongaVoyageBuilder({ onOpenBookingWithCustom }) {
               {/* Price & Summary */}
               <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
                 <div>
-                  <span className="text-xs text-slate-500 uppercase tracking-wider block">Est. Custom Voyage</span>
-                  <span className="text-2xl font-bold text-[#1E5399] font-serif-custom">
-                    ${estimatedCost} <span className="text-xs font-sans-custom font-normal text-slate-500">/ person</span>
+                  <span className="text-xs text-slate-500 uppercase tracking-wider block">Custom Voyage Rates</span>
+                  <span className="text-xl font-bold text-[#1E5399] font-serif-custom">
+                    Inquire for Quote
                   </span>
                 </div>
 
