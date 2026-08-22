@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Plane, Car, Ticket, ShieldAlert, Compass, Anchor, Hotel, ShieldCheck, ArrowRight } from 'lucide-react';
 import Tilt3DCard from './Tilt3DCard';
-import { DoongaBoatIcon, CarTransferIcon, MachhapuchhrePeakIcon, ParaglideSoarIcon } from './CustomSymbols';
+import { DoongaBoatIcon, CarTransferIcon, MachhapuchhrePeakIcon, ParaglideSoarIcon, LakesideCompassIcon } from './CustomSymbols';
 
 export default function TravelServicesGrid({ onOpenBooking }) {
   const SERVICES = [
@@ -69,24 +69,29 @@ export default function TravelServicesGrid({ onOpenBooking }) {
   ];
 
   return (
-    <section id="services" className="py-24 bg-white relative border-t border-slate-200">
-      <div className="max-w-7xl mx-auto px-6">
+    <section id="services" className="min-h-screen flex flex-col justify-center py-8 sm:py-12 md:py-16 bg-white relative border-t border-slate-200 overflow-hidden w-full max-w-full screen-snap-section">
+      <motion.div
+        initial={{ opacity: 0, y: 35 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.05 }}
+        transition={{ duration: 0.4, ease: "easeOut" }}
+        className="max-w-[1536px] mx-auto px-4 sm:px-8 lg:px-12"
+      >
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-blue-50 border border-blue-200 text-xs tracking-widest uppercase text-[#1E5399] font-bold mb-4 shadow-sm">
-            <ShieldCheck className="w-4 h-4 text-[#C5283D]" />
-            <span>Full-Service Travel Agency</span>
+        <div className="text-center max-w-3xl mx-auto mb-3 sm:mb-5">
+          <div className="inline-flex items-center gap-2.5 px-3.5 py-1 rounded-full bg-blue-50 border border-blue-200 text-[11px] tracking-widest uppercase text-[#1E5399] font-bold mb-1.5 shadow-sm">
+            <span>Complete Travel Desk</span>
           </div>
-          <h2 className="font-serif-custom text-3xl sm:text-5xl font-bold text-slate-900 tracking-tight">
+          <h2 className="font-section-title text-2xl sm:text-4xl font-bold text-slate-900 tracking-tight">
             Our Full Range of Travel Services
           </h2>
-          <p className="mt-4 text-slate-600 font-sans-custom font-normal text-base sm:text-lg">
+          <p className="mt-1 sm:mt-1.5 text-slate-600 font-elegant-body font-normal text-xs sm:text-sm">
             From luxury 4x4 car rentals and domestic flight tickets to licensed trek guides and private lake charters — we manage every detail of your Nepal journey.
           </p>
         </div>
 
         {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
           {SERVICES.map((srv) => {
             const IconComp = srv.icon;
             return (
@@ -96,30 +101,27 @@ export default function TravelServicesGrid({ onOpenBooking }) {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4 }}
-                  className="glass-card glass-card-hover rounded-3xl p-7 flex flex-col justify-between group preserve-3d h-full"
+                  className="glass-card glass-card-hover rounded-3xl p-3.5 sm:p-4.5 flex flex-col justify-between group preserve-3d h-full"
                 >
                   <div>
-                    {/* Top Badge & Icon */}
-                    <div className="flex items-center justify-between mb-5">
-                      <div className={`w-12 h-12 rounded-2xl ${srv.bg} border flex items-center justify-center group-hover:scale-110 transition-transform shadow-3d-blue`}>
-                        <IconComp className={`w-6 h-6 ${srv.color}`} color="currentColor" />
-                      </div>
-                      <span className="text-[10px] uppercase font-bold tracking-wider px-3 py-1 rounded-full bg-white border border-slate-200 text-slate-600 shadow-sm translate-z-20">
+                    {/* Top Tag */}
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-[9.5px] uppercase font-bold tracking-wider px-2.5 py-0.5 rounded-full bg-white border border-slate-200 text-slate-600 shadow-sm translate-z-20">
                         {srv.tag}
                       </span>
                     </div>
 
-                    <h3 className="font-serif-custom text-xl font-bold text-slate-900 mb-2 group-hover:text-[#1E5399] transition-colors translate-z-10">
+                    <h3 className="font-serif-custom text-base sm:text-lg font-bold text-slate-900 mb-1 group-hover:text-[#1E5399] transition-colors translate-z-10">
                       {srv.title}
                     </h3>
 
-                    <p className="text-slate-600 text-sm leading-relaxed font-normal">
+                    <p className="text-slate-600 text-xs leading-relaxed font-normal font-elegant-body">
                       {srv.desc}
                     </p>
                   </div>
 
-                  <div className="pt-5 mt-5 border-t border-slate-200/60 flex items-center justify-between">
-                    <span className="text-xs font-bold text-[#1E5399] uppercase tracking-wider">
+                  <div className="pt-2.5 mt-2.5 border-t border-slate-200/60 flex items-center justify-between">
+                    <span className="text-[10.5px] font-bold text-[#1E5399] uppercase tracking-wider">
                       {srv.badge}
                     </span>
                   </div>
@@ -130,16 +132,13 @@ export default function TravelServicesGrid({ onOpenBooking }) {
         </div>
 
         {/* Agency Registration & Certification Banner */}
-        <div className="mt-16 p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-blue-50/90 via-white to-red-50/90 border border-slate-200/90 shadow-xl flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex items-center gap-4 text-center md:text-left">
-            <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#1E5399] to-[#C5283D] flex items-center justify-center shrink-0 text-white shadow-md">
-              <ShieldCheck className="w-6 h-6 text-amber-300" />
-            </div>
+        <div className="mt-4 sm:mt-5 p-3.5 sm:p-4 rounded-3xl bg-gradient-to-r from-blue-50/90 via-white to-red-50/90 border border-slate-200/90 shadow-lg flex flex-col md:flex-row items-center justify-between gap-3 sm:gap-4">
+          <div className="flex flex-col sm:flex-row items-center sm:items-start md:items-center gap-3 text-center sm:text-left">
             <div>
-              <h4 className="font-serif-custom font-bold text-lg text-slate-900">
+              <h4 className="font-serif-custom font-bold text-xs sm:text-sm text-slate-900">
                 Official Licensed Travel Agency • Government Registered
               </h4>
-              <p className="text-xs text-slate-600 font-sans-custom font-medium mt-0.5">
+              <p className="text-[10px] sm:text-[11px] text-slate-600 font-sans-custom font-medium mt-0.5">
                 Nepal Tourism Board (NTB) Reg No. 148920/078 • TAAN & NATTA Member • 100% Guaranteed Liability Insurance
               </p>
             </div>
@@ -147,12 +146,12 @@ export default function TravelServicesGrid({ onOpenBooking }) {
 
           <a
             href="tel:+9779856028626"
-            className="shrink-0 px-6 py-3 rounded-full bg-gradient-to-r from-[#1E5399] via-[#2563EB] to-[#C5283D] hover:shadow-xl text-xs font-bold uppercase tracking-wider text-white shadow-md transition-all"
+            className="w-full md:w-auto shrink-0 px-5 py-2.5 rounded-full bg-gradient-to-r from-[#1E5399] via-[#2563EB] to-[#C5283D] hover:shadow-xl text-[11px] font-bold uppercase tracking-wider text-white shadow-md transition-all text-center"
           >
             Contact Travel Desk
           </a>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

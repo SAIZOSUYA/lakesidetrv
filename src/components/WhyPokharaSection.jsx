@@ -14,7 +14,7 @@ export default function WhyPokharaSection() {
       tagline: 'Nepal\'s iconic calm reflections',
       desc: 'Unlike bustling high-altitude pass routes, Phewa Lake offers still morning waters that reflect Machhapuchhre (Fishtail) with surreal clarity. Glide on wooden boats with local oarsmen.',
       stats: '6.5 sq km of tranquil waters',
-      badge: '99.8% Serenity Index'
+      badge: 'Serene Atmosphere'
     },
     {
       id: 'air',
@@ -48,30 +48,33 @@ export default function WhyPokharaSection() {
   const currentTab = HIGHLIGHTS.find(h => h.id === activeTab);
 
   return (
-    <section id="why-pokhara" className="relative py-20 sm:py-28 bg-slate-50/60 overflow-hidden">
+    <section id="why-pokhara" className="relative min-h-screen flex flex-col justify-center py-8 sm:py-12 md:py-16 bg-slate-50/60 overflow-hidden screen-snap-section">
       {/* Background Decorative Blur Orbs */}
       <div className="absolute top-1/4 left-0 w-96 h-96 bg-blue-300/30 rounded-full blur-3xl pointer-events-none"></div>
       <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-red-200/30 rounded-full blur-3xl pointer-events-none"></div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.05 }}
+        transition={{ duration: 0.4, ease: "easeOut" }}
+        className="max-w-[1536px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10"
+      >
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/90 backdrop-blur-md border border-blue-200/80 text-xs tracking-widest uppercase text-[#1E5399] font-bold mb-4 shadow-sm">
-            <div className="w-5 h-5 rounded-full bg-[#1E5399]/10 border border-[#1E5399]/30 flex items-center justify-center shrink-0">
-              <HimalayanStarIcon className="w-3.5 h-3.5" color="#1E5399" />
-            </div>
-            <span>The Pokhara Magic</span>
+        <div className="text-center max-w-3xl mx-auto mb-4 sm:mb-6">
+          <div className="inline-flex items-center gap-2.5 px-3.5 py-1 rounded-full bg-white/90 backdrop-blur-md border border-blue-200/80 text-[11px] tracking-widest uppercase text-[#1E5399] font-bold mb-1.5 shadow-sm">
+            <span>Discover Pokhara</span>
           </div>
-          <h2 className="font-serif-custom text-3xl sm:text-5xl font-bold text-slate-900 tracking-tight">
+          <h2 className="font-section-title text-2xl sm:text-4xl font-bold text-slate-900 tracking-tight">
             Why Pokhara Captures the Soul
           </h2>
-          <p className="mt-4 text-slate-600 font-sans-custom font-normal text-base sm:text-lg leading-relaxed">
+          <p className="mt-1.5 sm:mt-2 text-slate-600 font-elegant-body font-normal text-xs sm:text-base leading-relaxed">
             Where high alpine majesty gently meets serene waters, creating an unhurried haven unlike anywhere else in the Himalayas.
           </p>
         </div>
 
-        {/* Interactive Glassmorphic Feature Tabs */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+        {/* Interactive Feature Tabs */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3.5 mb-4 sm:mb-5">
           {HIGHLIGHTS.map((item) => {
             const IconComponent = item.icon;
             const isActive = activeTab === item.id;
@@ -79,25 +82,22 @@ export default function WhyPokharaSection() {
               <button
                 key={item.id}
                 onClick={() => setActiveTab(item.id)}
-                className={`p-5 rounded-2xl text-left transition-all duration-300 flex flex-col justify-between ${
+                className={`p-2.5 sm:p-3.5 rounded-2xl text-left transition-all duration-300 flex flex-col justify-between ${
                   isActive
-                    ? 'bg-white/95 backdrop-blur-xl border-2 border-[#1E5399] shadow-xl shadow-blue-500/10 scale-[1.02]'
+                    ? 'bg-white/95 backdrop-blur-xl border-2 border-[#1E5399] shadow-md shadow-blue-500/10 scale-[1.01]'
                     : 'glass-card hover:bg-white/90 border-slate-200 text-slate-700 shadow-sm'
                 }`}
               >
-                <div className="flex items-center justify-between mb-4">
-                  <div className={`p-2.5 rounded-xl flex items-center justify-center transition-colors ${isActive ? 'bg-gradient-to-r from-[#1E5399] to-[#C5283D] text-white shadow-md' : 'bg-blue-50 text-[#1E5399]'}`}>
-                    <IconComponent className="w-5 h-5" color={isActive ? "#FFFFFF" : "#1E5399"} />
-                  </div>
-                  <span className={`text-[10px] px-2.5 py-0.5 rounded-full font-bold uppercase tracking-wider ${isActive ? 'bg-red-50 text-[#C5283D] border border-red-200' : 'bg-slate-100 text-slate-500'}`}>
+                <div className="flex flex-wrap items-center justify-between gap-1 mb-1.5 sm:mb-2">
+                  <span className={`text-[8.5px] sm:text-[10px] px-1.5 sm:px-2 py-0.5 rounded-full font-bold uppercase tracking-wider ${isActive ? 'bg-red-50 text-[#C5283D] border border-red-200' : 'bg-slate-100 text-slate-500'}`}>
                     {item.badge}
                   </span>
                 </div>
                 <div>
-                  <h3 className="font-serif-custom text-base sm:text-lg font-bold text-slate-900 leading-snug">
+                  <h3 className="font-serif-custom text-xs sm:text-base font-bold text-slate-900 leading-snug line-clamp-2">
                     {item.title}
                   </h3>
-                  <p className="text-xs text-slate-500 font-sans-custom mt-1">
+                  <p className="text-[9.5px] sm:text-xs text-slate-500 font-sans-custom mt-0.5 line-clamp-1">
                     {item.tagline}
                   </p>
                 </div>
@@ -106,53 +106,49 @@ export default function WhyPokharaSection() {
           })}
         </div>
 
-        {/* Glassmorphic Display Box */}
+        {/* Display Box */}
         <motion.div
           key={activeTab}
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
-          className="glass-panel rounded-3xl p-8 md:p-12 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative overflow-hidden"
+          className="glass-panel rounded-3xl p-4 sm:p-6 lg:p-8 grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 items-center relative overflow-hidden"
         >
           {/* Content Left Column */}
-          <div className="lg:col-span-7 flex flex-col justify-between space-y-6">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-50/90 border border-blue-200 text-[#1E5399] text-xs font-semibold">
-              <Sun className="w-3.5 h-3.5 text-amber-500" />
+          <div className="lg:col-span-7 flex flex-col justify-between space-y-2.5 sm:space-y-3.5">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50/80 border border-blue-200/80 text-[10px] sm:text-[11px] font-bold text-[#1E5399] tracking-wide shadow-sm self-start">
               <span>{currentTab.stats}</span>
             </div>
 
-            <h3 className="font-serif-custom text-2xl sm:text-4xl font-bold text-slate-900 leading-snug">
+            <h3 className="font-serif-custom text-lg sm:text-2xl lg:text-3xl font-bold text-slate-900 leading-snug">
               {currentTab.title}
             </h3>
 
-            <p className="text-slate-600 font-sans-custom leading-relaxed text-base sm:text-lg font-normal">
+            <p className="text-slate-600 font-elegant-body leading-relaxed text-xs sm:text-sm font-normal">
               {currentTab.desc}
             </p>
 
-            <div className="pt-4 flex flex-wrap items-center gap-6 border-t border-slate-200/80 text-sm text-slate-600 font-medium">
-              <div className="flex items-center gap-2">
-                <ShieldCheck className="w-4 h-4 text-emerald-600" />
+            <div className="pt-2 flex flex-wrap items-center gap-3 sm:gap-5 border-t border-slate-200/80 text-[11px] sm:text-xs text-slate-600 font-medium">
+              <div>
                 <span>Verified Local Oarsmen & Pilots</span>
               </div>
-              <div className="flex items-center gap-2">
-                <Heart className="w-4 h-4 text-[#C5283D]" />
+              <div>
                 <span>Eco-Conscious Tourism</span>
               </div>
             </div>
 
-            <div className="pt-2">
+            <div className="pt-1">
               <a
                 href="#packages"
-                className="inline-flex items-center gap-3 px-7 py-3.5 rounded-full bg-gradient-to-r from-[#1E5399] via-[#2563EB] to-[#C5283D] text-white text-xs font-bold uppercase tracking-wider transition-all shadow-lg hover:shadow-xl hover:scale-105 active:scale-95"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-full bg-gradient-to-r from-[#1E5399] via-[#2563EB] to-[#C5283D] text-white text-[11px] sm:text-xs font-bold uppercase tracking-wider transition-all shadow-md hover:shadow-lg hover:scale-105 active:scale-95"
               >
                 <span>Explore Related Journeys</span>
-                <ArrowRight className="w-4 h-4" />
               </a>
             </div>
           </div>
 
           {/* Graphic Right Column Visual */}
-          <div className="lg:col-span-5 relative rounded-2xl overflow-hidden shadow-2xl group min-h-[260px] sm:min-h-[320px] border border-white/60">
+          <div className="lg:col-span-5 relative rounded-2xl overflow-hidden shadow-lg group h-40 sm:h-52 lg:h-64 border border-white/60">
             <img
               src={
                 activeTab === 'lake'
@@ -167,12 +163,12 @@ export default function WhyPokharaSection() {
               className="w-full h-full object-cover rounded-2xl transform group-hover:scale-105 transition-transform duration-700"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent"></div>
-            <div className="absolute bottom-4 left-4 right-4 glass-badge p-3.5 rounded-xl border border-white/40 text-xs text-slate-900 font-bold shadow-lg">
+            <div className="absolute bottom-2.5 left-2.5 right-2.5 glass-badge p-2.5 rounded-xl border border-white/40 text-[10px] sm:text-[11px] text-slate-900 font-bold shadow-md truncate">
               <span className="text-[#C5283D]">{currentTab.badge}</span> • Pokhara Valley, Nepal
             </div>
           </div>
         </motion.div>
-      </div>
+      </motion.div>
     </section>
   );
 }

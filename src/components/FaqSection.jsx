@@ -30,26 +30,29 @@ export default function FaqSection() {
   ];
 
   return (
-    <section className="py-24 bg-white relative border-t border-slate-200">
-      <div className="max-w-4xl mx-auto px-6">
+    <section className="min-h-screen flex flex-col justify-center py-6 sm:py-10 lg:py-12 bg-white relative border-t border-slate-200 screen-snap-section">
+      <motion.div
+        initial={{ opacity: 0, y: 25 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: false, amount: 0.25 }}
+        transition={{ duration: 0.75, ease: "easeOut" }}
+        className="max-w-5xl mx-auto px-4 sm:px-8"
+      >
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-blue-50 border border-blue-200 text-xs tracking-widest uppercase text-[#1E5399] font-bold mb-4 shadow-sm">
-            <div className="w-5 h-5 rounded-full bg-[#1E5399]/10 border border-[#1E5399]/30 flex items-center justify-center shrink-0">
-              <LakesideCompassIcon className="w-3.5 h-3.5" color="#1E5399" />
-            </div>
+        <div className="text-center mb-2.5 sm:mb-4">
+          <div className="inline-flex items-center gap-2.5 px-3.5 py-1 rounded-full bg-blue-50 border border-blue-200 text-[11px] tracking-widest uppercase text-[#1E5399] font-bold mb-1.5 shadow-sm">
             <span>Got Questions?</span>
           </div>
-          <h2 className="font-serif-custom text-3xl sm:text-5xl font-bold text-slate-900 tracking-tight">
+          <h2 className="font-section-title text-2xl sm:text-4xl font-bold text-slate-900 tracking-tight">
             Frequently Asked Questions
           </h2>
-          <p className="mt-4 text-slate-600 font-sans-custom font-normal text-base sm:text-lg">
+          <p className="mt-1 sm:mt-1.5 text-slate-600 font-elegant-body font-normal text-xs sm:text-sm">
             Everything you need to know about booking, flight safety, weather policies, and lake transfers.
           </p>
         </div>
 
         {/* FAQ Accordion List */}
-        <div className="space-y-4">
+        <div className="space-y-2 sm:space-y-2.5">
           {FAQS.map((faq, idx) => {
             const isOpen = openIdx === idx;
             return (
@@ -59,15 +62,15 @@ export default function FaqSection() {
               >
                 <button
                   onClick={() => setOpenIdx(isOpen ? -1 : idx)}
-                  className="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 font-bold text-slate-900 text-base sm:text-lg focus:outline-none"
+                  className="w-full p-3 sm:p-4 text-left flex items-center justify-between gap-3 font-bold text-slate-900 text-xs sm:text-base focus:outline-none"
                 >
-                  <span className="flex items-center gap-3">
-                    <span className="w-7 h-7 rounded-full bg-blue-50 text-[#1E5399] text-xs flex items-center justify-center font-mono shrink-0">
+                  <span className="flex items-start sm:items-center gap-2.5 sm:gap-3 min-w-0">
+                    <span className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-blue-50 text-[#1E5399] text-[10px] sm:text-[11px] flex items-center justify-center font-mono shrink-0 mt-0.5 sm:mt-0">
                       0{idx + 1}
                     </span>
-                    <span>{faq.q}</span>
+                    <span className="leading-snug">{faq.q}</span>
                   </span>
-                  <ChevronDown className={`w-5 h-5 text-[#1E5399] transition-transform duration-300 shrink-0 ${isOpen ? 'rotate-180 text-[#C5283D]' : ''}`} />
+                  <ChevronDown className={`w-4 h-4 text-[#1E5399] transition-transform duration-300 shrink-0 ${isOpen ? 'rotate-180 text-[#C5283D]' : ''}`} />
                 </button>
 
                 <AnimatePresence>
@@ -79,7 +82,7 @@ export default function FaqSection() {
                       transition={{ duration: 0.3 }}
                       className="overflow-hidden"
                     >
-                      <div className="px-6 pb-6 pt-2 text-slate-600 text-sm leading-relaxed font-normal border-t border-slate-100 bg-slate-50/50">
+                      <div className="px-3.5 sm:px-5 pb-4 pt-1.5 text-slate-600 text-xs leading-relaxed font-normal font-elegant-body border-t border-slate-100 bg-slate-50/50">
                         {faq.a}
                       </div>
                     </motion.div>
@@ -91,19 +94,18 @@ export default function FaqSection() {
         </div>
 
         {/* Live Help Callout */}
-        <div className="mt-12 p-6 rounded-2xl bg-gradient-to-r from-blue-50 to-red-50 border border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
-          <div className="flex items-center gap-3 text-slate-800 text-sm font-semibold">
-            <PhoneCall className="w-5 h-5 text-[#C5283D]" />
+        <div className="mt-4 sm:mt-5 p-3.5 sm:p-4 rounded-2xl bg-gradient-to-r from-blue-50 to-red-50 border border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
+          <div className="flex items-center gap-3 text-slate-800 text-xs sm:text-sm font-semibold">
             <span>Have a specific question or custom group inquiry?</span>
           </div>
           <a
             href="tel:+9779856028626"
-            className="px-5 py-2.5 rounded-full bg-[#1E5399] hover:bg-[#1b4985] text-white text-xs font-bold uppercase tracking-wider shadow-md transition-all"
+            className="w-full sm:w-auto text-center px-4 py-2 rounded-full bg-[#1E5399] hover:bg-[#1b4985] text-white text-[11px] font-bold uppercase tracking-wider shadow-sm transition-all shrink-0"
           >
             Call Lakeside Desk: +977 985-6028626
           </a>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

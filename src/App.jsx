@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from './components/Navbar';
 import WaterRippleHero from './components/WaterRippleHero';
-import TrustSafetyBar from './components/TrustSafetyBar';
+import ImmersiveBackgroundEffects from './components/ImmersiveBackgroundEffects';
 import WhyPokharaSection from './components/WhyPokharaSection';
 import TravelServicesGrid from './components/TravelServicesGrid';
 import VehicleFleetSection from './components/VehicleFleetSection';
@@ -12,6 +12,8 @@ import FaqSection from './components/FaqSection';
 import Footer from './components/Footer';
 
 export default function App() {
+  const [searchFilter, setSearchFilter] = useState(null);
+
   useEffect(() => {
     // Reset scroll restoration to manual so browser doesn't restore scroll position on refresh
     if ('scrollRestoration' in history) {
@@ -32,17 +34,17 @@ export default function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 font-sans selection:bg-[#C5283D] selection:text-white relative">
+    <div className="min-h-screen bg-slate-50 text-slate-900 font-sans selection:bg-[#C5283D] selection:text-white relative overflow-x-hidden">
+      {/* Interactive Global Background Mist & Glow Effects */}
+      <ImmersiveBackgroundEffects />
+
       {/* Top Navbar Header */}
       <Navbar />
 
       {/* Main App Content */}
-      <main>
+      <main className="overflow-x-hidden w-full">
         {/* Interactive Water Ripple Hero Header */}
-        <WaterRippleHero />
-
-        {/* Industry Trust & Guarantee Bar */}
-        <TrustSafetyBar />
+        <WaterRippleHero onSearch={(filter) => setSearchFilter(filter)} />
 
         {/* Why Pokhara Features & Experience Highlights */}
         <WhyPokharaSection />
@@ -54,7 +56,7 @@ export default function App() {
         <VehicleFleetSection />
 
         {/* Curated Journeys & Packages */}
-        <CuratedJourneysSection />
+        <CuratedJourneysSection searchFilter={searchFilter} />
 
         {/* Interactive Mountain & Landmark Elevation Showcase */}
         <MountainMapSection />

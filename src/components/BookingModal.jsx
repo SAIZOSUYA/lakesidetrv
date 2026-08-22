@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import confetti from 'canvas-confetti';
-import { X, Calendar, Users, CheckCircle, Waves, Sparkles, Send, Compass } from 'lucide-react';
+import { X, Calendar, Users, CheckCircle, Waves, Compass, Send } from 'lucide-react';
 import { TOUR_PACKAGES } from '../data/toursData';
 
 export default function BookingModal({ isOpen, onClose, preselectedPackage, customData }) {
@@ -78,7 +78,7 @@ export default function BookingModal({ isOpen, onClose, preselectedPackage, cust
 
           {/* Modal Header */}
           <div className="flex items-center gap-2 text-xs uppercase tracking-widest text-[#C5283D] font-bold mb-2">
-            <Sparkles className="w-4 h-4 text-[#1E5399]" />
+            <Compass className="w-4 h-4 text-[#1E5399]" />
             <span>Reservations & Inquiry</span>
           </div>
 

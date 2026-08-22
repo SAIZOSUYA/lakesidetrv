@@ -1,9 +1,9 @@
 import React, { useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Waves, Sparkles, Wind } from 'lucide-react';
-import { LakesideCompassIcon, HimalayanStarIcon } from './CustomSymbols';
+import { Waves, Wind, Compass } from 'lucide-react';
+import { LakesideCompassIcon, HimalayanStarIcon, AnimatedLocationPinIcon } from './CustomSymbols';
 
-export default function WaterRippleHero() {
+export default function WaterRippleHero({ onSearch }) {
   const canvasRef = useRef(null);
 
   // Interactive Liquid Water Ripple Effect on HTML5 Canvas overlay
@@ -12,6 +12,7 @@ export default function WaterRippleHero() {
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
     let animationFrameId;
+    let isComponentVisible = true;
 
     let width = (canvas.width = canvas.offsetWidth);
     let height = (canvas.height = canvas.offsetHeight);
@@ -41,24 +42,40 @@ export default function WaterRippleHero() {
       const rect = canvas.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
-      // Add ripple intermittently to avoid clutter
       if (Math.random() > 0.4) {
         addRipple(x, y);
       }
     };
 
-    canvas.addEventListener('mousemove', handleMouseMove);
+    const handleTouchMove = (e) => {
+      if (e.touches && e.touches[0]) {
+        const rect = canvas.getBoundingClientRect();
+        const x = e.touches[0].clientX - rect.left;
+        const y = e.touches[0].clientY - rect.top;
+        if (Math.random() > 0.6) {
+          addRipple(x, y);
+        }
+      }
+    };
+
+    canvas.addEventListener('mousemove', handleMouseMove, { passive: true });
+    canvas.addEventListener('touchmove', handleTouchMove, { passive: true });
 
     // Add gentle automatic ambient ripples over the lake area
     const ambientInterval = setInterval(() => {
-      if (ripples.length < 12) {
+      if (isComponentVisible && ripples.length < 10) {
         const x = Math.random() * width;
         const y = height * 0.45 + Math.random() * (height * 0.4);
         addRipple(x, y);
       }
-    }, 1200);
+    }, 1500);
 
     const render = () => {
+      if (!isComponentVisible) {
+        animationFrameId = requestAnimationFrame(render);
+        return;
+      }
+
       ctx.clearRect(0, 0, width, height);
 
       for (let i = 0; i < ripples.length; i++) {
@@ -89,28 +106,41 @@ export default function WaterRippleHero() {
       animationFrameId = requestAnimationFrame(render);
     };
 
+    // Pause rendering when canvas is out of viewport to save GPU/CPU
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          isComponentVisible = entry.isIntersecting;
+        });
+      },
+      { threshold: 0.05 }
+    );
+
+    observer.observe(canvas);
     render();
 
     return () => {
+      observer.disconnect();
       window.removeEventListener('resize', handleResize);
       canvas.removeEventListener('mousemove', handleMouseMove);
+      canvas.removeEventListener('touchmove', handleTouchMove);
       clearInterval(ambientInterval);
       cancelAnimationFrame(animationFrameId);
     };
   }, []);
 
   return (
-    <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-slate-900 pt-36 sm:pt-40 pb-24">
-      {/* Background Image with Reflection & Mist Overlay */}
+    <section className="relative w-full min-h-screen flex flex-col justify-center items-center overflow-hidden bg-slate-900 pt-20 sm:pt-28 pb-12 sm:pb-16 screen-snap-section">
+      {/* Background Image with Ultra High Definition Visual Clarity */}
       <div className="absolute inset-0 z-0">
         <img
           src="/images/phewa_lake_hero.jpg"
           alt="Phewa Lake Sunrise with Machhapuchhre Reflection"
-          className="w-full h-full object-cover object-center scale-105 filter brightness-95 contrast-105 transform transition-transform duration-10000 hover:scale-110"
+          className="w-full h-full object-cover object-center filter brightness-[1.04] contrast-[1.08] saturate-[1.12] image-render-sharp transform transition-transform duration-10000 hover:scale-105"
         />
-        {/* Dark Gradient Overlay for Crisp Text Contrast */}
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-900/50 to-slate-900/70"></div>
-        <div className="absolute inset-0 bg-radial from-transparent via-slate-900/30 to-slate-950/80"></div>
+        {/* Crystal Clear Light Overlay for Text Contrast without Dimming Mountain Reflections */}
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-900/40 to-slate-950/50"></div>
+        <div className="absolute inset-0 bg-radial from-transparent via-slate-900/10 to-slate-950/60"></div>
       </div>
 
       {/* Interactive Water Ripple Canvas */}
@@ -130,17 +160,22 @@ export default function WaterRippleHero() {
         <span>Sarangkot Breeze Drift • Paraglider 1,600m</span>
       </motion.div>
 
-      {/* Hero Content Box */}
-      <div className="relative z-20 max-w-5xl mx-auto px-6 text-center text-white">
+      {/* Hero Content Box with Simple Immersive Transition */}
+      <motion.div
+        initial={{ opacity: 0, y: 25, scale: 0.98 }}
+        whileInView={{ opacity: 1, y: 0, scale: 1 }}
+        viewport={{ once: false, amount: 0.25 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="relative z-20 max-w-5xl mx-auto px-3.5 sm:px-6 text-center text-white"
+      >
         {/* Feature Tag Badge */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/25 text-xs sm:text-sm tracking-widest uppercase text-amber-200 font-sans-custom mb-6 shadow-2xl font-bold"
+          className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 rounded-full bg-slate-900/85 backdrop-blur-md border border-slate-700/80 text-[10px] sm:text-xs tracking-wider uppercase text-slate-100 font-sans-custom mb-3 sm:mb-6 shadow-xl font-semibold max-w-full truncate"
         >
-          <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-          <span>Serenity & Adventure • Pokhara, Nepal</span>
+          <span className="truncate">Pokhara, Nepal • Serenity & Adventure</span>
         </motion.div>
 
         {/* Main Headline */}
@@ -148,10 +183,10 @@ export default function WaterRippleHero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.2 }}
-          className="font-serif-custom text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[1.08] text-balance drop-shadow-2xl text-white"
+          className="font-ragetha text-2xl xs:text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-medium tracking-tight leading-tight sm:leading-[1.08] text-balance drop-shadow-2xl text-white"
         >
-          Where Still Waters <br />
-          <span className="italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-amber-200 to-[#F59E0B] drop-shadow-md">
+          Where Still Waters <br className="hidden sm:inline" />
+          <span className="font-ragetha italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-amber-200 to-[#F59E0B] drop-shadow-md">
             Mirror Endless Peaks
           </span>
         </motion.h1>
@@ -161,7 +196,7 @@ export default function WaterRippleHero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.4 }}
-          className="mt-6 max-w-2xl mx-auto text-base sm:text-lg md:text-xl text-slate-100 font-sans-custom leading-relaxed font-normal drop-shadow-md"
+          className="mt-3 sm:mt-6 max-w-2xl mx-auto text-xs sm:text-base md:text-xl text-slate-100 font-sans-custom leading-relaxed font-normal drop-shadow-md px-1 sm:px-0"
         >
           Immerse yourself in Pokhara's unhurried rhythm — wooden boat rides across Phewa Lake at dawn, Sarangkot sunrise flights, and misty lakeside coffee culture.
         </motion.p>
@@ -171,34 +206,32 @@ export default function WaterRippleHero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.7 }}
-          className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6"
+          className="mt-5 sm:mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 w-full max-w-sm sm:max-w-none mx-auto"
         >
           <a
             href="#packages"
-            className="w-full sm:w-auto group relative inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-[#1E5399] via-[#2563EB] to-[#C5283D] text-xs font-bold uppercase tracking-wider text-white shadow-2xl hover:shadow-blue-500/30 transition-all duration-300 transform hover:scale-105 active:scale-95"
+            className="w-full sm:w-auto group relative inline-flex items-center justify-center gap-2.5 px-6 py-3.5 sm:px-8 sm:py-4 rounded-full bg-gradient-to-r from-[#1E5399] via-[#2563EB] to-[#C5283D] text-xs font-bold uppercase tracking-wider text-white shadow-2xl hover:shadow-blue-500/30 transition-all duration-300 transform hover:scale-105 active:scale-95"
           >
-            <LakesideCompassIcon className="w-4 h-4 group-hover:rotate-45 transition-transform duration-500" color="#FDE68A" />
             <span>Explore Signature Journeys</span>
             <div className="absolute -inset-1 rounded-full border border-[#C5283D]/50 animate-ripple-pulse pointer-events-none"></div>
           </a>
 
           <a
             href="#why-pokhara"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-white/20 hover:bg-white/30 backdrop-blur-md border border-white/35 text-xs font-bold uppercase tracking-wider text-white transition-all duration-300 shadow-lg"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 sm:px-8 sm:py-4 rounded-full bg-white/20 hover:bg-white/30 backdrop-blur-md border border-white/35 text-xs font-bold uppercase tracking-wider text-white transition-all duration-300 shadow-lg"
           >
-            <Waves className="w-4 h-4 text-teal-200" />
             <span>Explore The Lake Story</span>
           </a>
         </motion.div>
 
-        {/* Vibe Filter Quick Pills */}
+        {/* Experience Filter Quick Pills */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.8 }}
-          className="mt-14 hidden sm:flex items-center justify-center gap-3 text-xs text-slate-200 font-sans-custom"
+          className="mt-8 sm:mt-12 hidden sm:flex items-center justify-center gap-2.5 sm:gap-3 text-xs text-slate-200 font-sans-custom"
         >
-          <span className="text-slate-300 font-semibold">Popular vibes:</span>
+          <span className="text-slate-300 font-semibold">Popular experiences:</span>
           {["Dawn Boat Trip", "Sarangkot Sunrise", "Stupa Walk", "Terracotta Cafes"].map((vibe, idx) => (
             <a
               key={idx}
@@ -209,12 +242,12 @@ export default function WaterRippleHero() {
             </a>
           ))}
         </motion.div>
-      </div>
+      </motion.div>
 
       {/* Bottom Ripple Section Divider Curve */}
       <div className="absolute bottom-0 left-0 right-0 z-20">
         <svg
-          className="w-full h-16 sm:h-24 text-slate-50 fill-current preserve-3d"
+          className="w-full h-12 sm:h-20 text-slate-50 fill-current preserve-3d"
           viewBox="0 0 1440 120"
           preserveAspectRatio="none"
         >

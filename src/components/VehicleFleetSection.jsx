@@ -61,206 +61,136 @@ export default function VehicleFleetSection() {
   ];
 
   return (
-    <section id="vehicle-fleet" className="py-20 sm:py-28 bg-gradient-to-b from-slate-50 via-blue-50/40 via-white to-red-50/30 relative overflow-hidden border-t border-slate-200/80 perspective-1000">
-      {/* Background Decorative Blur Orbs Matching Theme Colors (#1E5399 Blue, #C5283D Red, #F59E0B Amber) */}
-      <div className="absolute -top-24 -left-24 w-[500px] h-[500px] bg-[#1E5399]/18 rounded-full blur-[120px] pointer-events-none"></div>
-      <div className="absolute top-1/4 -right-24 w-[550px] h-[550px] bg-[#C5283D]/16 rounded-full blur-[140px] pointer-events-none"></div>
-      <div className="absolute bottom-10 left-10 w-[450px] h-[450px] bg-[#F59E0B]/14 rounded-full blur-[110px] pointer-events-none"></div>
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-gradient-to-r from-[#1E5399]/10 via-amber-400/8 to-[#C5283D]/10 rounded-full blur-[130px] pointer-events-none"></div>
+    <section id="vehicle-fleet" className="min-h-screen flex flex-col justify-center py-6 sm:py-10 bg-slate-50 relative border-t border-slate-200 overflow-hidden w-full max-w-full screen-snap-section">
+      {/* Background Decorative Blur Orbs */}
+      <div className="absolute -top-24 -left-24 w-[400px] h-[400px] bg-[#1E5399]/15 rounded-full blur-[100px] pointer-events-none"></div>
+      <div className="absolute top-1/4 -right-24 w-[450px] h-[450px] bg-[#C5283D]/14 rounded-full blur-[110px] pointer-events-none"></div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-14">
-          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/90 backdrop-blur-md border border-[#1E5399]/30 text-xs tracking-widest uppercase text-[#1E5399] font-bold mb-4 shadow-sm">
-            <div className="w-5 h-5 rounded-full bg-[#1E5399]/10 border border-[#1E5399]/30 flex items-center justify-center shrink-0">
-              <CarTransferIcon className="w-3.5 h-3.5" color="#1E5399" />
-            </div>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.05 }}
+        transition={{ duration: 0.35, ease: "easeOut" }}
+        className="max-w-[1536px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10"
+      >
+        {/* Header */}
+        <div className="text-center max-w-3xl mx-auto mb-4 sm:mb-6">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-50 border border-blue-200 text-[11px] tracking-widest uppercase text-[#1E5399] font-bold mb-1.5 shadow-sm">
             <span>Vehicle Fleet & Rental Packages</span>
           </div>
 
-          <h2 className="font-serif-custom text-3xl sm:text-5xl font-bold text-slate-900 tracking-tight">
+          <h2 className="font-section-title text-xl sm:text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight">
             Find the Perfect Car for Rent
           </h2>
-          <p className="mt-4 text-slate-600 font-sans-custom font-normal text-base sm:text-lg">
-            Chauffeured luxury EV Cars, 4x4 Scorpio Jeeps & EV Passenger Vans with experienced local mountain drivers.
+          <p className="mt-1 sm:mt-2 text-slate-600 font-elegant-body font-normal text-xs sm:text-sm">
+            Chauffeured luxury EV Cars, 4x4 Scorpio Jeeps & EV Passenger Vans with local mountain drivers.
           </p>
-
-          {/* Quick Pill Filter Bar with Theme Colors */}
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-2.5">
-            <span className="px-4 py-1.5 rounded-full bg-[#1E5399] text-white text-xs font-bold uppercase tracking-wider shadow-md shadow-[#1E5399]/20">
-              EV CAR
-            </span>
-            <span className="px-4 py-1.5 rounded-full bg-[#F59E0B] text-slate-900 text-xs font-bold uppercase tracking-wider shadow-md shadow-amber-500/20">
-              EV VAN
-            </span>
-            <span className="px-4 py-1.5 rounded-full bg-[#C5283D] text-white text-xs font-bold uppercase tracking-wider shadow-md shadow-[#C5283D]/20">
-              SCORPIO 4X4
-            </span>
-            <span className="px-4 py-1.5 rounded-full bg-gradient-to-r from-[#1E5399] to-[#C5283D] text-white text-xs font-bold uppercase tracking-wider shadow-md">
-              Packages Available
-            </span>
-          </div>
         </div>
 
-        {/* Interactive 3D Official Vehicle Fleet Showcase with Theme Gradient Framing */}
-        <Tilt3DCard tiltIntensity={6} className="mb-16">
-          <div className="rounded-3xl p-[2px] bg-gradient-to-r from-[#1E5399]/40 via-white to-[#C5283D]/40 shadow-3d-lg">
-            <div className="rounded-[22px] overflow-hidden glass-panel border border-white/80 p-3 sm:p-5 bg-gradient-to-br from-blue-50/70 via-white to-red-50/50 preserve-3d">
-              {/* Showcase Widescreen Image Container - Perfectly Scaled & 100% Visible */}
-              <div className="relative w-full aspect-[1024/564] rounded-2xl overflow-hidden shadow-2xl border border-slate-200/80 group preserve-3d bg-slate-900 ring-1 ring-[#1E5399]/20">
+        {/* Fleet Showcase Widescreen Container - Compact Viewport Fitted */}
+        <div className="mb-3 sm:mb-4">
+          <div className="rounded-2xl p-[1.5px] bg-gradient-to-r from-[#1E5399]/30 via-white to-[#C5283D]/30 shadow-md">
+            <div className="rounded-[15px] overflow-hidden glass-panel border border-white/80 p-2 sm:p-3 bg-gradient-to-br from-blue-50/60 via-white to-red-50/40">
+              {/* Image Banner */}
+              <div className="relative w-full h-28 sm:h-40 lg:h-44 rounded-xl overflow-hidden shadow-md border border-slate-200/80 bg-slate-900">
                 <img
                   src="/images/lakeside_fleet_official.jpg"
                   alt="Lakeside Travels Official Fleet - Mahindra Scorpio 4x4, Chery Omoda E5 EV SUV, KYC V5D EV Van"
-                  className="w-full h-full object-cover object-center rounded-2xl group-hover:scale-[1.01] transition-transform duration-700"
+                  className="w-full h-full object-cover object-center rounded-xl"
                 />
               </div>
 
-              {/* Theme Color Info Bar Below Image */}
-              <div className="mt-6 p-5 sm:p-6 rounded-2xl bg-gradient-to-r from-blue-100/70 via-white to-red-100/70 border border-slate-200/90 flex flex-col md:flex-row items-center justify-between gap-4 shadow-md text-slate-900 translate-z-20">
-                <div className="flex items-center gap-3.5 text-center md:text-left">
-                  <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#1E5399] to-[#C5283D] flex items-center justify-center shrink-0 text-white shadow-3d-blue">
-                    <CarTransferIcon className="w-6 h-6" color="#FFFFFF" />
-                  </div>
+              {/* Compact Info Bar Below Image */}
+              <div className="mt-2 p-2.5 sm:p-3 rounded-xl bg-gradient-to-r from-blue-100/70 via-white to-red-100/70 border border-slate-200/90 flex flex-col sm:flex-row items-center justify-between gap-2 text-slate-900">
+                <div className="flex items-center gap-2 text-center sm:text-left">
                   <div>
-                    <div className="flex flex-wrap items-center gap-2 mb-1">
-                      <span className="px-3.5 py-0.5 rounded-full bg-[#C5283D] text-white text-[10px] font-bold uppercase tracking-wider shadow-sm">
-                        Official Fleet
-                      </span>
-                      <span className="text-xs text-[#1E5399] font-bold">
-                        Mahindra Scorpio 4x4 • Chery Omoda E5 EV • KYC V5D EV Van
-                      </span>
-                    </div>
-                    <h3 className="font-serif-custom text-xl sm:text-2xl font-bold text-slate-900">
-                      Luxury EV Cars, 4x4 Scorpio & EV Vans
-                    </h3>
-                    <p className="text-xs text-slate-600 font-sans-custom mt-0.5">
+                    <span className="text-[10.5px] sm:text-xs text-[#1E5399] font-bold block leading-tight">
+                      Official Fleet: Mahindra Scorpio 4x4 • Chery Omoda E5 EV • KYC V5D EV Van
+                    </span>
+                    <span className="text-[9.5px] sm:text-[10px] text-slate-600 font-elegant-body">
                       Inspected, insured & chauffeured by expert Pokhara highway & high-altitude drivers.
-                    </p>
+                    </span>
                   </div>
                 </div>
 
                 <a
                   href="tel:+9779856028626"
-                  className="shrink-0 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-[#1E5399] via-[#2563EB] to-[#C5283D] hover:shadow-3d-red text-white text-xs font-bold uppercase tracking-wider shadow-md transition-all translate-z-30"
+                  className="w-full sm:w-auto text-center shrink-0 inline-flex items-center justify-center gap-1 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-[#1E5399] via-[#2563EB] to-[#C5283D] text-white text-[10.5px] font-bold uppercase tracking-wider shadow-sm transition-all"
                 >
-                  <PhoneCall className="w-4 h-4 text-amber-200" />
                   <span>Call Desk: +977 985-6028626</span>
                 </a>
               </div>
             </div>
           </div>
-        </Tilt3DCard>
-
-        {/* Cars Boxes Section Header */}
-        <div className="mb-8">
-          <span className="text-xs font-bold text-[#1E5399] uppercase tracking-wider block mb-1">
-            Select Your Vehicle
-          </span>
-          <h3 className="font-serif-custom text-2xl sm:text-3xl font-bold text-slate-900">
-            Vehicle Models & Rental Boxes
-          </h3>
         </div>
 
-        {/* Interactive 3D Vehicles Grid Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+        {/* Vehicles Grid Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4 mb-3 sm:mb-4">
           {VEHICLES.map((veh) => {
             const isSelected = activeVehicle === veh.id;
 
             return (
-              <Tilt3DCard key={veh.id} tiltIntensity={10}>
-                <div
-                  onClick={() => setActiveVehicle(veh.id)}
-                  className={`glass-card glass-card-hover rounded-3xl p-5 sm:p-6 cursor-pointer flex flex-col justify-between border transition-all preserve-3d h-full ${
-                    isSelected ? 'border-[#1E5399] ring-2 ring-[#1E5399]/20 shadow-3d-blue bg-white/95' : 'border-slate-200/90'
-                  }`}
-                >
-                  <div>
-                    {/* Car Box Photo Container */}
-                    <div className="relative h-56 rounded-2xl overflow-hidden mb-5 bg-gradient-to-b from-slate-900 to-slate-800 border border-slate-200/80 p-0 flex items-center justify-center shadow-md group preserve-3d">
-                      <img
-                        src={veh.image}
-                        alt={veh.name}
-                        className="w-full h-full object-cover rounded-2xl group-hover:scale-105 transition-transform duration-500"
-                      />
-
-                      {/* Tag Badge */}
-                      <span className={`absolute top-3 left-3 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-md translate-z-30 ${veh.badgeBg}`}>
-                        {veh.tag}
-                      </span>
-                    </div>
-
-                    <h3 className="font-serif-custom text-xl font-bold text-slate-900 mb-2 translate-z-10">
-                      {veh.name}
-                    </h3>
-
-                    <p className="text-slate-600 text-xs leading-relaxed font-normal mb-4 font-sans-custom">
-                      {veh.desc}
-                    </p>
-
-                    <div className="space-y-2 pt-3 border-t border-slate-100 text-xs font-medium text-slate-700">
-                      <div className="flex items-center justify-between">
-                        <span className="text-slate-400">Capacity:</span>
-                        <span className="font-bold text-slate-900">{veh.seats}</span>
-                      </div>
-                      <div className="flex items-center justify-between">
-                        <span className="text-slate-400">Fuel Type:</span>
-                        <span className="font-bold text-slate-900">{veh.fuel}</span>
-                      </div>
-                      <div className="flex items-center justify-between">
-                        <span className="text-slate-400">Ideal Routes:</span>
-                        <span className="font-bold text-[#1E5399]">{veh.bestFor}</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between">
-                    <span className="text-xs font-bold text-[#1E5399] uppercase tracking-wider">
-                      Chauffeured Rental
+              <div
+                key={veh.id}
+                onClick={() => setActiveVehicle(veh.id)}
+                className={`glass-card rounded-2xl p-2.5 sm:p-3 cursor-pointer flex flex-col justify-between border transition-all ${
+                  isSelected ? 'border-[#1E5399] ring-2 ring-[#1E5399]/20 shadow-md bg-white' : 'border-slate-200/90'
+                }`}
+              >
+                <div>
+                  <div className="relative h-24 sm:h-32 rounded-xl overflow-hidden mb-2 bg-slate-900 border border-slate-200/80">
+                    <img
+                      src={veh.image}
+                      alt={veh.name}
+                      className="w-full h-full object-cover rounded-xl"
+                    />
+                    <span className={`absolute top-1.5 left-1.5 text-[8.5px] font-bold px-1.5 py-0.5 rounded-full uppercase tracking-wider shadow-sm ${veh.badgeBg}`}>
+                      {veh.tag}
                     </span>
                   </div>
+
+                  <h3 className="font-serif-custom text-xs sm:text-sm font-bold text-slate-900 mb-0.5">
+                    {veh.name}
+                  </h3>
+
+                  <p className="text-slate-600 text-[10px] leading-tight font-normal mb-1.5 line-clamp-2">
+                    {veh.desc}
+                  </p>
+
+                  <div className="flex items-center justify-between text-[9.5px] sm:text-[10px] font-medium text-slate-700 pt-1.5 border-t border-slate-100">
+                    <span><strong className="text-slate-900">{veh.seats}</strong> • {veh.fuel}</span>
+                    <span className="font-bold text-[#1E5399] truncate max-w-[130px]">{veh.bestFor}</span>
+                  </div>
                 </div>
-              </Tilt3DCard>
+              </div>
             );
           })}
         </div>
 
-        {/* Official Services & Tour Routes Grid (From Official Poster) */}
-        <div className="glass-panel rounded-3xl p-8 sm:p-10 border border-slate-200/90 shadow-xl">
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8 border-b border-slate-200/80 pb-6">
-            <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-50 border border-red-200 text-[#C5283D] text-xs font-bold mb-2">
-                <CheckCircle2 className="w-3.5 h-3.5" />
-                <span>Official Destinations & Routes</span>
-              </div>
-              <h3 className="font-serif-custom text-2xl sm:text-3xl font-bold text-slate-900">
-                Official Car & Jeep Tour Services
-              </h3>
+        {/* Official Destinations Strip */}
+        <div className="glass-panel rounded-2xl p-2.5 sm:p-3 border border-slate-200/90 shadow-md">
+          <div className="flex items-center justify-between gap-2 mb-1.5">
+            <div className="flex items-center gap-1 text-[11px] text-[#C5283D] font-bold">
+              <span>Verified Direct Transport Routes (No Middleman Agent Fees)</span>
+              <span>Official Tour Routes & Destinations:</span>
             </div>
-
-            <div className="flex items-center gap-3 text-xs text-slate-600 font-bold">
-              <MapPin className="w-4 h-4 text-[#C5283D]" />
-              <span>Base: Lakeside, Pokhara</span>
-            </div>
+            <span className="text-[10px] text-slate-500 font-medium hidden sm:inline">Lakeside Hub Base</span>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-            {OFFICIAL_ROUTES.map((route, i) => (
-              <Tilt3DCard key={i} tiltIntensity={8}>
-                <div className="glass-card hover:bg-white p-4 rounded-2xl border border-slate-200/80 hover:border-[#1E5399]/40 transition-all text-left flex flex-col justify-between h-full">
-                  <div>
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#C5283D] block mb-1">
-                      {route.tag}
-                    </span>
-                    <h4 className="font-serif-custom font-bold text-slate-900 text-sm">
-                      {route.name}
-                    </h4>
-                  </div>
-                </div>
-              </Tilt3DCard>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+            {OFFICIAL_ROUTES.slice(0, 4).map((route, i) => (
+              <div key={i} className="glass-card p-2 sm:p-2.5 rounded-xl border border-slate-200/80 text-left">
+                <span className="text-[8.5px] font-bold uppercase text-[#C5283D] block">
+                  {route.tag}
+                </span>
+                <h4 className="font-newari font-bold text-slate-900 text-[11px] sm:text-xs truncate">
+                  {route.name}
+                </h4>
+              </div>
             ))}
           </div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

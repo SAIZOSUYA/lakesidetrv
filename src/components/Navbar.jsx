@@ -45,26 +45,26 @@ export default function Navbar({ onOpenBooking }) {
       }`}
     >
       {/* Main Navbar: Floating Luxury Glass Capsule */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-3 sm:pt-4">
+      <div className="w-full max-w-[1536px] mx-auto px-3 sm:px-8 lg:px-12 pt-2 sm:pt-4">
         <div
-          className={`mx-auto rounded-full bg-white/95 backdrop-blur-xl border border-slate-200/90 shadow-xl px-5 sm:px-7 py-2.5 transition-all duration-300 flex items-center justify-between ${
-            scrolled ? 'shadow-2xl py-2' : ''
+          className={`w-full mx-auto rounded-full bg-white/95 backdrop-blur-xl border border-slate-200/90 shadow-xl px-4 sm:px-7 py-2 sm:py-2.5 transition-all duration-300 flex items-center justify-between ${
+            scrolled ? 'shadow-2xl py-1.5 sm:py-2' : ''
           }`}
         >
           {/* Brand Logo */}
-          <a href="#" className="flex items-center space-x-3 group shrink-0 mr-4 lg:mr-8">
-            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden border-2 border-slate-200 shadow-md group-hover:border-[#C5283D] group-hover:scale-105 transition-all duration-300 bg-white shrink-0">
+          <a href="#" className="flex items-center space-x-2 sm:space-x-3 group shrink-0 mr-1 sm:mr-4 lg:mr-8 min-w-0">
+            <div className="w-8 h-8 sm:w-11 sm:h-11 rounded-full overflow-hidden border-2 border-slate-200 shadow-md group-hover:border-[#C5283D] group-hover:scale-105 transition-all duration-300 bg-white shrink-0">
               <img
                 src="/logo.png"
                 alt="Lakeside Travels Logo"
                 className="w-full h-full object-contain p-0.5"
               />
             </div>
-            <div className="flex flex-col text-left">
-              <span className="font-serif-custom text-lg sm:text-xl font-bold tracking-tight text-slate-900 group-hover:text-[#C5283D] transition-colors duration-300 leading-tight">
+            <div className="flex flex-col text-left truncate">
+              <span className="font-serif-custom text-sm sm:text-xl font-bold tracking-tight text-slate-900 group-hover:text-[#C5283D] transition-colors duration-300 leading-tight truncate">
                 Lakeside Travels
               </span>
-              <span className="text-[9px] tracking-[0.2em] uppercase text-[#1E5399] font-sans-custom font-extrabold">
+              <span className="text-[7.5px] sm:text-[9px] tracking-[0.18em] uppercase text-[#1E5399] font-sans-custom font-extrabold truncate">
                 Pokhara • Nepal
               </span>
             </div>
@@ -103,7 +103,7 @@ export default function Navbar({ onOpenBooking }) {
           {/* Mobile Toggle Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 text-slate-800 hover:text-[#C5283D]"
+            className="md:hidden p-1.5 text-slate-800 hover:text-[#C5283D] rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-300"
             aria-label="Toggle Navigation Menu"
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -113,44 +113,57 @@ export default function Navbar({ onOpenBooking }) {
 
       {/* Mobile Drawer Navigation */}
       {mobileMenuOpen && (
-        <div className="md:hidden max-w-7xl mx-auto px-4 mt-2">
-          <div className="bg-white/98 backdrop-blur-xl rounded-3xl border border-slate-200 px-6 py-6 transition-all shadow-2xl">
-            <div className="flex flex-col space-y-4 text-base font-bold text-slate-900">
+        <div className="md:hidden max-w-7xl mx-auto px-3 sm:px-4 mt-2">
+          <div className="bg-white/98 backdrop-blur-2xl rounded-3xl border border-slate-200/90 px-5 py-5 transition-all shadow-2xl space-y-4">
+            <div className="flex flex-col space-y-3.5 text-sm font-bold text-slate-900">
               <a
                 href="#why-pokhara"
                 onClick={() => setMobileMenuOpen(false)}
-                className="hover:text-[#C5283D]"
+                className="py-1 hover:text-[#C5283D] border-b border-slate-100 flex items-center justify-between"
               >
-                Why Pokhara
-              </a>
-              <a
-                href="#packages"
-                onClick={() => setMobileMenuOpen(false)}
-                className="hover:text-[#C5283D]"
-              >
-                Curated Journeys
+                <span>Why Pokhara</span>
+                <span className="text-[10px] text-[#1E5399] uppercase font-mono">Highlights</span>
               </a>
               <a
                 href="#services"
                 onClick={() => setMobileMenuOpen(false)}
-                className="hover:text-[#C5283D]"
+                className="py-1 hover:text-[#C5283D] border-b border-slate-100 flex items-center justify-between"
               >
-                Services
+                <span>Travel Desk & Services</span>
+                <span className="text-[10px] text-[#1E5399] uppercase font-mono">Full Desk</span>
+              </a>
+              <a
+                href="#vehicle-fleet"
+                onClick={() => setMobileMenuOpen(false)}
+                className="py-1 hover:text-[#C5283D] border-b border-slate-100 flex items-center justify-between"
+              >
+                <span>Official Car Fleet</span>
+                <span className="text-[10px] text-[#C5283D] uppercase font-mono">EV & 4x4</span>
+              </a>
+              <a
+                href="#packages"
+                onClick={() => setMobileMenuOpen(false)}
+                className="py-1 hover:text-[#C5283D] border-b border-slate-100 flex items-center justify-between"
+              >
+                <span>Curated Journeys</span>
+                <span className="text-[10px] text-[#1E5399] uppercase font-mono">Packages</span>
               </a>
               <a
                 href="#gallery"
                 onClick={() => setMobileMenuOpen(false)}
-                className="hover:text-[#C5283D]"
+                className="py-1 hover:text-[#C5283D] border-b border-slate-100 flex items-center justify-between"
               >
-                Visual Gallery
+                <span>Visual Photo Journal</span>
+                <span className="text-[10px] text-amber-600 uppercase font-mono">Gallery</span>
               </a>
-              <div className="pt-4 border-t border-slate-200">
+              <div className="pt-2">
                 <a
                   href="#packages"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="w-full inline-flex items-center justify-center rounded-full bg-gradient-to-r from-[#1E5399] to-[#C5283D] py-3 text-xs font-bold uppercase tracking-wider text-white shadow-md"
+                  className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#1E5399] via-[#2563EB] to-[#C5283D] py-3 text-xs font-bold uppercase tracking-wider text-white shadow-md active:scale-95 transition-transform"
                 >
-                  Explore Journeys
+                  <LakesideCompassIcon className="w-4 h-4" color="#FDE68A" />
+                  <span>Explore Signature Journeys</span>
                 </a>
               </div>
             </div>
